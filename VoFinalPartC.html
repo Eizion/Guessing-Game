@@ -1,0 +1,100 @@
+<!--Duc Vo Final-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Final</title>
+    <style>
+        div {
+            text-align: center;
+        }
+        table {
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+        }
+
+        td {
+            text-align: center;
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script language="JavaScript" type="text/javascript">
+
+        $(document).ready(function($) {
+
+            var gem = Math.floor(Math.random() * 9) + 1;
+            console.log("Answer1 is " + gem);
+            alert("New Game");
+            var message = "";
+
+            $("#submit").click(function() {
+                var guess = parseFloat(document.getElementById("guess").value);
+                console.log("Guess was " + guess);
+
+                if (guess < 1 || guess > 9) {
+                    message = "Please use numbers between 1 and 9 in your guesses!";
+                } else {
+                    if (guess != gem) {
+                        message = "Try again!";
+                        $("#"+guess).html("O");
+
+                    } else {
+                        message = "You have found the hidden gem!";
+                        $("#"+guess).html("X");
+                    }
+                }
+
+                $("#message").html(message);
+                $("#guess").val("");
+            });
+
+            $("#clear").click(function() {
+                for (var i = 1; i < 10; i++) {
+                    $("#"+i).html("");
+                }
+
+                $("#message").html("");
+            });
+
+        });
+
+
+
+    </script>
+</head>
+<body>
+
+<table border="1">
+    <tbody>
+        <tr>
+            <td id="1"></td>
+            <td id="2"></td>
+            <td id="3"></td>
+        </tr>
+        <tr>
+            <td id="4"></td>
+            <td id="5"></td>
+            <td id="6"></td>
+        </tr>
+        <tr>
+            <td id="7"></td>
+            <td id="8"></td>
+            <td id="9"></td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="message"></div>
+
+<div id="Instructions">
+    <p>Guess a spot (Top row: 1, 2, 3 | Middle Row: 4, 5, 6 | Bottom Row: 7, 8, 9)</p>
+    <input type="text" id="guess">
+    <input type="button" id="submit" value="Submit">
+    <input type="button" id="clear" value="Clear">
+</div>
+</body>
+</html>
